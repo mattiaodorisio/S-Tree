@@ -1,0 +1,8 @@
+[submodule "extern/benchmark"]
+	path = extern/benchmark
+	url = https://github.com/google/benchmark.git
+	shallow = true
+[submodule "extern/ips4o"]
+	path = extern/ips4o
+	url = https://github.com/ips4o/ips4o.git
+	shallow = true
