@@ -13,6 +13,12 @@ namespace SIMD_Btree {
         static constexpr unsigned leaf_block_size = reg::vector_size * leaves_vectors_per_block;
 
     public:
+        b_plus_tree() = default;
+
+        b_plus_tree(const value_type* const left, const value_type* const right) {
+            build(left, right);
+        }
+
         ~b_plus_tree() {
             clear();
         }
@@ -53,18 +59,39 @@ namespace SIMD_Btree {
             build(static_cast<const value_type* const>(&(*first)), static_cast<const value_type* const>(&(*last)));
         }
 
-        __attribute__((always_inline))
-        inline size_t search(const value_type& value) const {
+        template <bool lower_bound = true>
+        FORCE_INLINE size_t search(const value_type& value) const {
             
             using reg_t = reg::reg_type;
             reg_t x = reg::reg_set1(value);
 
             if (leaves_number <= leaf_block_size) [[ unlikely ]] {
-                return block<value_type, ext, leaves_vectors_per_block>::block_rank(x, leaf_nodes);
+                return block<value_type, ext, leaves_vectors_per_block>::template block_rank<lower_bound>(x, leaf_nodes);
             }
 
-            size_t block_index = inner_nodes.search(value);
-            return block_index * leaf_block_size + block<value_type, ext, leaves_vectors_per_block>::block_rank(x, leaf_nodes + (block_index * leaf_block_size));
+            size_t block_index = inner_nodes.template search<lower_bound>(value);
+            return block_index * leaf_block_size + block<value_type, ext, leaves_vectors_per_block>::template block_rank<lower_bound>(x, leaf_nodes + (block_index * leaf_block_size));
+        }
+
+        inline size_t lower_bound_idx(const value_type& value) const {
+            return search<true>(value);
+        }
+
+        inline size_t upper_bound_idx(const value_type& value) const {
+            return search<false>(value);
+        }
+
+        // Support operator[]
+        static inline constexpr bool support_access() {
+            return true;
+        }
+
+        value_type operator[](const size_t idx) const {
+            return leaf_nodes[idx];
+        }
+
+        size_t size() const {
+            return leaves_number;
         }
 
         size_t size_in_bytes() const {
@@ -79,7 +106,7 @@ namespace SIMD_Btree {
         }
 
     private:
-        btree<value_type, ext, vectors_per_block> inner_nodes;
+        btree<value_type, 0, ext, vectors_per_block> inner_nodes;
         size_t leaves_number = 0;
         size_t leaves_blocks = 0;
         value_type * leaf_nodes = nullptr;

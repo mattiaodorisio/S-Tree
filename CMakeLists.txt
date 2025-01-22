@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.13)
 project(Search)
 
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -Wall -fopt-info-vec-optimized")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -Wall -march=native -fopt-info-vec-optimized")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}  -O3 -Wall -g -march=native")
 set(CMAKE_BUILD_TYPE RELEASE)
 
