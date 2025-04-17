@@ -326,21 +326,40 @@ namespace SIMD_Btree {
             return (fanout_powers()[exponent]);
         }
 
-        void build_rec(const value_type* const left, const value_type* const right, const size_t pos, value_type * target_left, const size_t overall_size) const {
-            auto mid_prev = left;
-            for (size_t i = 0; i < line_size; ++i) {
-                const auto mid = left + ((right - left + 1) / (line_size + 1)) * (i+1) - 1;
-                new (target_left + (pos - 1) * line_size + i) value_type(*mid);
-                const size_t new_pos = pos * (line_size + 1) + i - (line_size-1);
-                if (new_pos < overall_size / line_size) {
-                    build_rec(mid_prev, mid, new_pos, target_left, overall_size);
+        void build_bottom_up_step(value_type * from_left, value_type * from_right, value_type * to_left) {
+            const size_t current_size = from_right - from_left;
+            const size_t current_internal_size = current_size / (line_size + 1);
+
+            value_type * from_reading_right = from_right;
+            value_type * to_writing_right = to_left + current_internal_size;
+            while (from_reading_right > from_left) {
+                for (size_t j = 0; j < line_size; ++j) {
+                    *(--from_right) = (*(--from_reading_right));
                 }
-                mid_prev = mid + 1;
+                if (from_reading_right > from_left) {
+                    *(--to_writing_right) = (*(--from_reading_right));
+                }
             }
-            const size_t new_pos = pos * (line_size + 1) + line_size - (line_size-1);
-            if (new_pos < overall_size / line_size + 1) {
-                build_rec(mid_prev, right, new_pos, target_left, overall_size);
+        }
+
+        void build_bottom_up(value_type * left, value_type * right) {
+            size_t current_size = right - left;
+            size_t current_internal_size = current_size / (line_size + 1);
+
+            if (current_internal_size == 0) {
+                return;
             }
+
+            value_type * buffer = new value_type[current_internal_size];
+
+            while (current_internal_size > 0) {
+                build_bottom_up_step(left, left + current_size, buffer);
+                std::copy(buffer, buffer + current_internal_size, left);
+                current_size = current_internal_size;
+                current_internal_size = current_size / (line_size + 1);
+            }
+
+            delete[] buffer;
         }
 
         template <size_t iter_count, bool lower_bound>
@@ -445,27 +464,23 @@ namespace SIMD_Btree {
             for (size_t i = tree_size; i < tree_size + padding_size; ++i)
                 tree[i] = std::numeric_limits<value_type>::max();
 
-            value_type * tree_tmp = (value_type *) std::aligned_alloc(64, sizeof(value_type) * (tree_reduced_size));
-
             // Prepare the tree without the last level of leaves
             size_t last_level_size = tree_exceeding_leaves;
             size_t current_idx = 0, tree_tmp_idx = 0;
             while (last_level_size > 0) {
                 if (current_idx % (line_size + 1) == line_size) {
-                    tree_tmp[tree_tmp_idx++] = left[current_idx++];
+                    tree[tree_tmp_idx++] = left[current_idx++];
                 } else {
                     tree[tree_size - last_level_size] = left[current_idx++];
                     --last_level_size;
                 }
             }
             tree_exceeding_nodes = current_idx;
-            std::copy(left + current_idx, right, tree_tmp + tree_tmp_idx);
+            std::copy(left + current_idx, right, tree + tree_tmp_idx);
 
             if (tree_reduced_size > 0) {
-                build_rec(tree_tmp, tree_tmp + tree_reduced_size, 1, tree, tree_reduced_size);
+                build_bottom_up(tree, tree + tree_reduced_size);
             }
-
-            std::free(tree_tmp);
         }
 
         // Iterator interface
