@@ -222,29 +222,29 @@ SEARCH_BENCHMARK_T(index_fixture, b_tree_512_1, e.lower_bound_idx, (SIMD_Btree::
 SEARCH_BENCHMARK_T(index_fixture, b_tree_512_2, e.lower_bound_idx, (SIMD_Btree::btree<data_t, 0, SIMD_Btree::SIMD_ext::AVX512, 2>));
 SEARCH_BENCHMARK_T(index_fixture, b_tree_512_4, e.lower_bound_idx, (SIMD_Btree::btree<data_t, 0, SIMD_Btree::SIMD_ext::AVX512, 4>));
 
-SEARCH_BENCHMARK_T(index_fixture, b_plus_256_1_1, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX2, 1, 1>));
-SEARCH_BENCHMARK_T(index_fixture, b_plus_256_1_2, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX2, 1, 2>));
-SEARCH_BENCHMARK_T(index_fixture, b_plus_256_1_4, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX2, 1, 4>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_256_1_1, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 1, 1>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_256_1_2, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 1, 2>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_256_1_4, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 1, 4>));
 
-SEARCH_BENCHMARK_T(index_fixture, b_plus_256_2_1, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX2, 2, 1>));
-SEARCH_BENCHMARK_T(index_fixture, b_plus_256_2_2, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX2, 2, 2>));
-SEARCH_BENCHMARK_T(index_fixture, b_plus_256_2_4, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX2, 2, 4>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_256_2_1, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 2, 1>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_256_2_2, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 2, 2>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_256_2_4, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 2, 4>));
 
-SEARCH_BENCHMARK_T(index_fixture, b_plus_256_4_1, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX2, 4, 1>));
-SEARCH_BENCHMARK_T(index_fixture, b_plus_256_4_2, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX2, 4, 2>));
-SEARCH_BENCHMARK_T(index_fixture, b_plus_256_4_4, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX2, 4, 4>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_256_4_1, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 4, 1>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_256_4_2, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 4, 2>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_256_4_4, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 4, 4>));
 
-SEARCH_BENCHMARK_T(index_fixture, b_plus_512_1_1, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX512, 1, 1>));
-SEARCH_BENCHMARK_T(index_fixture, b_plus_512_1_2, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX512, 1, 2>));
-SEARCH_BENCHMARK_T(index_fixture, b_plus_512_1_4, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX512, 1, 4>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_512_1_1, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 1, 1>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_512_1_2, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 1, 2>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_512_1_4, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 1, 4>));
 
-SEARCH_BENCHMARK_T(index_fixture, b_plus_512_2_1, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX512, 2, 1>));
-SEARCH_BENCHMARK_T(index_fixture, b_plus_512_2_2, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX512, 2, 2>));
-SEARCH_BENCHMARK_T(index_fixture, b_plus_512_2_4, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX512, 2, 4>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_512_2_1, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 2, 1>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_512_2_2, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 2, 2>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_512_2_4, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 2, 4>));
 
-SEARCH_BENCHMARK_T(index_fixture, b_plus_512_4_1, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX512, 4, 1>));
-SEARCH_BENCHMARK_T(index_fixture, b_plus_512_4_2, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX512, 4, 2>));
-SEARCH_BENCHMARK_T(index_fixture, b_plus_512_4_4, e.lower_bound_idx, (SIMD_Btree::b_plus_tree<data_t, SIMD_Btree::SIMD_ext::AVX512, 4, 4>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_512_4_1, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 4, 1>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_512_4_2, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 4, 2>));
+SEARCH_BENCHMARK_T(index_fixture, b_plus_512_4_4, e.lower_bound_idx, (SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 4, 4>));
 
 SEARCH_BENCHMARK_T(index_fixture, pgm_btree, e.search, (pgm::BTreePGMIndex<data_t>));
 

@@ -8,18 +8,18 @@ namespace SIMD_Btree {
               SIMD_ext ext = AVX512,
               size_t vectors_per_block = sizeof(value_type) / 4,
               size_t leaves_vectors_per_block = vectors_per_block>
-    class b_plus_tree {
+    class sampled_btree {
         using reg = RegisterSelector<value_type, ext>;
         static constexpr unsigned leaf_block_size = reg::vector_size * leaves_vectors_per_block;
 
     public:
-        b_plus_tree() = default;
+        sampled_btree() = default;
 
-        b_plus_tree(const value_type* const left, const value_type* const right) {
+        sampled_btree(const value_type* const left, const value_type* const right) {
             build(left, right);
         }
 
-        ~b_plus_tree() {
+        ~sampled_btree() {
             clear();
         }
 
