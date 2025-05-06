@@ -128,24 +128,24 @@ void many_tests() {
     test<SIMD_Btree::ebs<data_t, log_sz>>(v, sz, "EBS" + std::to_string(sz));
 
     // B-Tree
-    test<SIMD_Btree::btree<data_t, 0, SIMD_Btree::SIMD_ext::AVX2, 1>>(v, sz, "EBS line avx2 1 " + std::to_string(sz));
-    test<SIMD_Btree::btree<data_t, 0, SIMD_Btree::SIMD_ext::AVX2, 2>>(v, sz, "EBS line avx2 2 " + std::to_string(sz));
-    test<SIMD_Btree::btree<data_t, 0, SIMD_Btree::SIMD_ext::AVX2, 4>>(v, sz, "EBS line avx2 4 " + std::to_string(sz));
-    test<SIMD_Btree::btree<data_t, 0, SIMD_Btree::SIMD_ext::AVX512, 1>>(v, sz, "EBS line avx512 1 " + std::to_string(sz));
-    test<SIMD_Btree::btree<data_t, 0, SIMD_Btree::SIMD_ext::AVX512, 2>>(v, sz, "EBS line avx512 2 " + std::to_string(sz));
-    test<SIMD_Btree::btree<data_t, 0, SIMD_Btree::SIMD_ext::AVX512, 4>>(v, sz, "EBS line avx512 4 " + std::to_string(sz));
+    test<SIMD_Btree::btree<data_t, 0, SIMD_Btree::SIMD_ext::AVX2, 1>>(v, sz, "BTREE avx2 1 " + std::to_string(sz));
+    test<SIMD_Btree::btree<data_t, 0, SIMD_Btree::SIMD_ext::AVX2, 2>>(v, sz, "BTREE avx2 2 " + std::to_string(sz));
+    test<SIMD_Btree::btree<data_t, 0, SIMD_Btree::SIMD_ext::AVX2, 4>>(v, sz, "BTREE avx2 4 " + std::to_string(sz));
+    test<SIMD_Btree::btree<data_t, 0, SIMD_Btree::SIMD_ext::AVX512, 1>>(v, sz, "BTREE avx512 1 " + std::to_string(sz));
+    test<SIMD_Btree::btree<data_t, 0, SIMD_Btree::SIMD_ext::AVX512, 2>>(v, sz, "BTREE avx512 2 " + std::to_string(sz));
+    test<SIMD_Btree::btree<data_t, 0, SIMD_Btree::SIMD_ext::AVX512, 4>>(v, sz, "BTREE avx512 4 " + std::to_string(sz));
 
     // Sampled B-Tree
-    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 1>>(v, sz, "B PLUS avx2 1 " + std::to_string(sz));
-    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 2>>(v, sz, "B PLUS avx2 2 " + std::to_string(sz));
-    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 4>>(v, sz, "B PLUS avx2 4 " + std::to_string(sz));
-    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 1>>(v, sz, "B PLUS avx512 1 " + std::to_string(sz));
-    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 2>>(v, sz, "B PLUS avx512 2 " + std::to_string(sz));
-    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 4>>(v, sz, "B PLUS avx512 4 " + std::to_string(sz));
+    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 1>>(v, sz, "SAMPLED avx2 1 " + std::to_string(sz));
+    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 2>>(v, sz, "SAMPLED avx2 2 " + std::to_string(sz));
+    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 4>>(v, sz, "SAMPLED avx2 4 " + std::to_string(sz));
+    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 1>>(v, sz, "SAMPLED avx512 1 " + std::to_string(sz));
+    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 2>>(v, sz, "SAMPLED avx512 2 " + std::to_string(sz));
+    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 4>>(v, sz, "SAMPLED avx512 4 " + std::to_string(sz));
     
     // B+ tree with leaves of different size
-    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 2, 4>>(v, sz, "B PLUS avx2 2-4 " + std::to_string(sz));
-    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 4, 1>>(v, sz, "B PLUS avx512 4-1 " + std::to_string(sz));
+    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX2, 2, 4>>(v, sz, "SAMPLED avx2 2-4 " + std::to_string(sz));
+    test<SIMD_Btree::sampled_btree<data_t, SIMD_Btree::SIMD_ext::AVX512, 4, 1>>(v, sz, "SAMPLED avx512 4-1 " + std::to_string(sz));
 
 #if defined TEST_UINT32 || defined TEST_UINT64
     test<pgm::BTreePGMIndex<data_t>, true>(v, sz, "PGM Btree " + std::to_string(sz));

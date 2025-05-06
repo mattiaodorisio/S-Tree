@@ -1,12 +1,13 @@
 # S-Tree
-This repository contains the implementation of a Static pointer-free and SIMD-optimized B-Tree, inspired by [this post](https://en.algorithmica.org/hpc/data-structures/s-tree/) on [algorithmica.org](https://en.algorithmica.org/)
+S-Tree is a Static pointer-free and SIMD-optimized B-Tree, inspired by [this post](https://en.algorithmica.org/hpc/data-structures/s-tree/) on [algorithmica.org](https://en.algorithmica.org/)
 
 ## Overview
 
-The S-Tree library offers efficient data structures optimized for modern hardware. It uses cache-sensitive layouts and SIMD intrinsics to enhance search and traversal performance, particularly for computing the rank (i.e. lower_bound) of elements, making it ideal for read-heavy workloads.
+The S-Tree library offers efficient data structures optimized for modern hardware. It uses cache-sensitive layouts and SIMD intrinsics to enhance the search performance, particularly for computing the rank (i.e. lower_bound) of elements, making it ideal for read-heavy workloads.
 
 Other useful references and similar projects:
 
+1. The Static Search Tree ([post](https://curiouscoding.nl/posts/static-search-tree/) and [repo](https://github.com/RagnarGrootKoerkamp/suffix-array-searching)) written in Rust by [@RagnarGrootKoerkamp](https://github.com/RagnarGrootKoerkamp), with common ideas plus more complex layouts and batched queries.
 1. FAST: fast architecture sensitive tree, presented in this [paper](https://dl.acm.org/doi/10.1145/1807167.1807206)
 1. The _CSS-Tree_ presented in the [paper](https://dl.acm.org/doi/10.5555/645925.671362) _Cache conscious indexing for decision-support in main memory_ by Rao, J., & Ross, K. A. (1998), and its [implementation](https://github.com/gvinciguerra/CSS-tree) by [@gvinciguerra](https://github.com/gvinciguerra)
 
@@ -44,13 +45,13 @@ For a complete working example, refer to `src/example.cc`.
 When declaring a `btree` or `sampled_btree`, several template parameters can be specified (all have default values):
 
 ```
-template <typename T,
+template <typename key_type,
           size_t known_log_tree_size = 0,
           SIMD_ext ext = AVX512,
           size_t vectors_per_block = 1>
 class btree;
 
-template <typename value_type,
+template <typename key_type,
           SIMD_ext ext = AVX512,
           size_t vectors_per_block = 1,
           size_t leaves_vectors_per_block = vectors_per_block>
