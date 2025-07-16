@@ -66,4 +66,28 @@ class sampled_btree;
 - **`known_log_tree_size`**: If the logarithm (base `B`) of the data size is known at compile time (consider using `btree::log_size(size_t n)`) this allows additional optimizations. The default value is `0` (unknown).
 
 ### Benchmarks
-This library was developed as part of the experimental setup for a research article that compares various indexing structures. For a detailed experimental evaluation and performance comparison have a look at the [repo](https://github.com/LorenzoBellomo/SortedStaticIndexBenchmark) and the [paper]().
+This library was developed as part of the experimental setup for a research article that compares various indexing structures. For a detailed experimental evaluation and performance comparison have a look at the [repo](https://github.com/LorenzoBellomo/SortedStaticIndexBenchmark) and the [paper](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.SEA.2025.5).
+
+### Cite us
+
+If you use this code in your research project, please cite us:
+
+```tex
+@InProceedings{bellomo_et_al:LIPIcs.SEA.2025.5,
+  author =	{Bellomo, Lorenzo and Cianci, Giuseppe and de Rosa, Luca and Ferragina, Paolo and Odorisio, Mattia},
+  title =	{{A Comparative Study of Compressed, Learned, and Traditional Indexing Methods for Integer Data}},
+  booktitle =	{23rd International Symposium on Experimental Algorithms (SEA 2025)},
+  pages =	{5:1--5:23},
+  series =	{Leibniz International Proceedings in Informatics (LIPIcs)},
+  ISBN =	{978-3-95977-375-1},
+  ISSN =	{1868-8969},
+  year =	{2025},
+  volume =	{338},
+  editor =	{Mutzel, Petra and Prezza, Nicola},
+  publisher =	{Schloss Dagstuhl -- Leibniz-Zentrum f{\"u}r Informatik},
+  address =	{Dagstuhl, Germany},
+  URL =		{https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.SEA.2025.5},
+  URN =		{urn:nbn:de:0030-drops-232439},
+  doi =		{10.4230/LIPIcs.SEA.2025.5},
+}
+```
