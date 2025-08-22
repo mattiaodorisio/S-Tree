@@ -102,6 +102,7 @@ namespace SIMD_Btree {
             inner_nodes.clear();
             if (leaf_nodes != nullptr) {
                 std::free(leaf_nodes);
+                leaf_nodes = nullptr;
             }
         }
 
